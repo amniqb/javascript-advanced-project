@@ -10,9 +10,9 @@ using the [Open Library API](https://openlibrary.org/developers/api).
 
 
 ## Features and link
-This webpage lets the user search books by category (e.g. Fantasy, Romance, Science) and returns a list of books. It's possible to view the description of each book by click on a specific button that shows
+This webpage lets the user search books by category (e.g. Fantasy, Romance, Science) and returns a list of books. It's possible to view the description of each book by clicking on a specific button that shows
 a modal popup that displays it. 
-It's possible to find it at the following link: [live website URL](https://progetto-javascript-advanced-ia.netlify.app/)
+It can be found at the following link: [live website URL](https://progetto-javascript-advanced-ia.netlify.app/)
 
 ---
 
