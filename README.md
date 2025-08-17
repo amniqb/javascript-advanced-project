@@ -31,4 +31,4 @@ It can be found at the following link: [live website URL](https://progetto-javas
 - index.js is the glue that ties everything together. It initializes event listeners (like the search form) and calls functions from other modules (api.js, dom.js) to handle fetching data and updating the UI.
 - api.js handles all communication with the Open Library API through functions like fetchBooksByCategory. The API requests are made using Axios; these are then converted into an API call and return book data.
 - dom.js is responsible for managing the user interface. It creates book cards and modals that show book cover, title, author, and description dynamically in the DOM. 
-- utils.js is used for small reusable functions. Example: capitalizing category names, formatting data before rendering. 
+- utils.js is used for small reusable functions.
