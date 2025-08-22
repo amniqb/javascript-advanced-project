@@ -1,14 +1,32 @@
-export function renderBookList(books, onBookClick, onLoadMore) {
+import noCoverImage from '../img/nocoverimage.jpg';
+
+export function renderBookList(books, onBookClick, onLoadMore, totalAvailable = null) {
   const resultsDiv = document.getElementById('results');
 
   resultsDiv.classList.add('books-container');
   resultsDiv.innerHTML = '';
 
-  
+
   if (!Array.isArray(books) || books.length === 0 || books[0].title === "No books found") {
-    resultsDiv.innerHTML = '<p>No books found.</p>';
+    const noBooksCard = document.createElement('div');
+    noBooksCard.className = 'book-card no-books-card';
+
+    const img = document.createElement('img');
+    img.src = noCoverImage;
+    img.alt = 'No books found';
+
+    const info = document.createElement('div');
+    info.className = 'book-info';
+    const message = document.createElement('p');
+    message.textContent = 'No books found.';
+    info.appendChild(message);
+
+    noBooksCard.appendChild(img);
+    noBooksCard.appendChild(info);
+    resultsDiv.appendChild(noBooksCard);
     return;
   }
+
 
   books.forEach(book => {
     const card = document.createElement('div');
@@ -44,9 +62,8 @@ export function renderBookList(books, onBookClick, onLoadMore) {
     resultsDiv.appendChild(card);
   });
 
-  
-  if (books.length > 0 && typeof onLoadMore === 'function') {
-   
+ 
+  if (typeof onLoadMore === 'function' && (!totalAvailable || books.length < totalAvailable)) {
     const more = document.createElement('button');
     more.className = 'load-more';
     more.type = 'button';

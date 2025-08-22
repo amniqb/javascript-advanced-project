@@ -134,6 +134,13 @@ h1 {
   cursor: pointer;
 }
 
+.no-books-card img {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}
+
 @media (min-width: 768px) {
   .books-container {
     grid-template-columns: repeat(3, 1fr);
