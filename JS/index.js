@@ -4,7 +4,6 @@ import { renderBookList, renderBookDescription } from './dom';
 import { debounce } from './utils';
 import '../img/favicon.ico';
 
-
 let currentCategory = '';
 let currentOffset = 0;
 const limit = 20;
@@ -13,13 +12,22 @@ let allBooks = [];
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('categoryInput');
   const searchBtn = document.getElementById('searchBtn');
+  const debouncedSearch = debounce(searchBooks, 300);
 
   async function searchBooks() {
     currentCategory = input.value.trim();
+
+    
     if (!currentCategory) {
       alert("Please enter a category");
       return;
     }
+
+    if (currentCategory.split(/\s+/).length > 1) {
+      alert("Please enter only one category at a time (e.g., 'romance', 'fantasy', 'horror')");
+      return;
+    }
+
     currentOffset = 0;
     allBooks = [];
     await loadMoreBooks();
@@ -32,13 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
     currentOffset += limit;
   }
 
- async function handleBookClick(book) {
-  const description = await fetchBookDescription(book.key);
-  renderBookDescription(description, book.cover_id, book.title);
-}
+  async function handleBookClick(book) {
+    const description = await fetchBookDescription(book.key);
+    renderBookDescription(description, book.cover_id, book.title);
+  }
 
   searchBtn.addEventListener('click', searchBooks);
+
   input.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') searchBooks();
   });
+
 });
+
