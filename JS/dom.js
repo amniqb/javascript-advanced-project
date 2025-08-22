@@ -4,7 +4,8 @@ export function renderBookList(books, onBookClick, onLoadMore) {
   resultsDiv.classList.add('books-container');
   resultsDiv.innerHTML = '';
 
-  if (!Array.isArray(books) || books.length === 0) {
+  
+  if (!Array.isArray(books) || books.length === 0 || books[0].title === "No books found") {
     resultsDiv.innerHTML = '<p>No books found.</p>';
     return;
   }
@@ -13,14 +14,12 @@ export function renderBookList(books, onBookClick, onLoadMore) {
     const card = document.createElement('div');
     card.className = 'book-card';
 
-    
     const img = document.createElement('img');
     img.src = book.cover_id
       ? `https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg`
       : 'https://via.placeholder.com/200x300?text=No+Cover';
     img.alt = `${book.title} cover`;
 
-    
     const info = document.createElement('div');
     info.className = 'book-info';
     const titleEl = document.createElement('h3');
@@ -46,7 +45,8 @@ export function renderBookList(books, onBookClick, onLoadMore) {
   });
 
   
-  if (typeof onLoadMore === 'function') {
+  if (books.length > 0 && typeof onLoadMore === 'function') {
+   
     const more = document.createElement('button');
     more.className = 'load-more';
     more.type = 'button';
