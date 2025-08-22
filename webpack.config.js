@@ -27,7 +27,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
+        test: /\.(png|jpe?g|gif|svg|ico)$/i,
         type: "asset/resource",
       },
     ],
@@ -36,6 +36,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./index.html", 
       filename: "index.html",
+      favicon: "./img/favicon.ico",
     }),
     new MiniCssExtractPlugin({
       filename: "css/styles.css", 

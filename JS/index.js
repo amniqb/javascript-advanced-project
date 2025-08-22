@@ -2,6 +2,8 @@ import "../css/styles.scss";
 import { fetchBooksByCategory, fetchBookDescription } from './api';
 import { renderBookList, renderBookDescription } from './dom';
 import { debounce } from './utils';
+import '../img/favicon.ico';
+
 
 let currentCategory = '';
 let currentOffset = 0;
